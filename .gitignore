@@ -1,5 +1,3 @@
 
 *.exe
-*makefile
-package.json
-*.md
+*.vscode

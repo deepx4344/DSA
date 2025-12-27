@@ -83,7 +83,7 @@ class LinkedLists {
       if (currentNode === this.head) {
         break;
       }
-      return found;
+
     }
   }
   push(value) {
@@ -186,10 +186,28 @@ class LinkedLists {
   }
 }
 
-const d = new LinkedLists();
-d.push(34);
-d.push(56);
-d.push(67);
-d.display();
-console.log(d.getNodeIndex(67));
-console.log(d.includes(34));
+const dop = new LinkedLists();
+
+dop.push(34);
+dop.push(45);
+dop.push(98);
+dop.push(88);
+dop.display();
+dop.insert(77, 2);
+dop.display();
+dop.insert(67, 0);
+dop.display();
+console.log(dop.getNodeIndex(34));
+console.log(dop.getNodeIndex(45));
+console.log(dop.getNodeIndex(98));
+console.log(dop.getNodeIndex(88));
+console.log(dop.getNodeIndex(77));
+console.log(dop.getNodeIndex(988));
+console.log(dop.includes(988));
+dop.delete(2);
+dop.display();
+dop.delete(0);
+dop.display();
+dop.delete(3);
+dop.display();
+console.log(dop.size());

@@ -100,10 +100,10 @@ class LinkedList<T> {
     }
     this.length++;
   }
-    includes(value:T) {
+  includes(value: T) {
     let currentNode = this.head;
     let found = false;
-    this.checkValue(value)
+    this.checkValue(value);
     if (!currentNode) {
       return found;
     }
@@ -150,7 +150,7 @@ class LinkedList<T> {
     }
     return index;
   }
-  delete(index:number) {
+  delete(index: number) {
     if (this.head === null) {
       throw new Error("Cannot delete from empty list");
     }
@@ -181,8 +181,11 @@ class LinkedList<T> {
     }
     this.length--;
   }
-  unshift(value:T) {
+  unshift(value: T) {
     this.insert(value, 0);
+  }
+  size() {
+    return this.length;
   }
 }
 
@@ -193,9 +196,21 @@ dop.push(45);
 dop.push(98);
 dop.push(88);
 dop.display();
-dop.insert(34, 2);
+dop.insert(77, 2);
 dop.display();
+dop.insert(67, 0);
+dop.display();
+console.log(dop.getNodeIndex(34));
+console.log(dop.getNodeIndex(45));
 console.log(dop.getNodeIndex(98));
-console.log(dop.includes(988))
-dop.delete(2)
-dop.display()
+console.log(dop.getNodeIndex(88));
+console.log(dop.getNodeIndex(77));
+console.log(dop.getNodeIndex(988));
+console.log(dop.includes(988));
+dop.delete(2);
+dop.display();
+dop.delete(0);
+dop.display();
+dop.delete(3);
+dop.display();
+console.log(dop.size());

@@ -222,6 +222,9 @@ class LinkedLists:
             nextNode.prev = previousNode
         self.size -= 1
 
+    def length(self):
+        return self.size
+
     def clear(self):
         """
         Clears the entire list.
@@ -231,11 +234,28 @@ class LinkedLists:
         self.size = 0
 
 
-d = LinkedLists()
-d.append(45)
-d.append(88)
-d.append(90)
-d.display()
-print(d.getNodeIndex(88))
-print(d.contains(95))
+dop = LinkedLists()
 
+dop.append(34)
+dop.append(45)
+dop.append(98)
+dop.append(88)
+dop.display()
+dop.insert(77, 2)
+dop.display()
+dop.insert(67, 0)
+dop.display()
+print(dop.getNodeIndex(34))
+print(dop.getNodeIndex(45))
+print(dop.getNodeIndex(98))
+print(dop.getNodeIndex(88))
+print(dop.getNodeIndex(77))
+print(dop.getNodeIndex(988))
+print(dop.contains(988))
+dop.deleteByIndex(2)
+dop.display()
+dop.deleteByIndex(0)
+dop.display()
+dop.deleteByIndex(3)
+dop.display()
+print(dop.length())
