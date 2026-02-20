@@ -1,22 +1,24 @@
 #include <iostream>
+template <typename T>
 struct Node
 {
-    int value;
-    Node *prev;
-    Node *next;
+    T value;
+    Node<T> *prev;
+    Node<T> *next;
 
-    Node(int val) : value(val), next(nullptr), prev(nullptr) {}
+    Node(T val) : value(val), next(nullptr), prev(nullptr) {}
 };
+template <typename T>
 class LinkedLists
 {
 private:
-    Node *head;
-    Node *tail;
+    Node<T> *head;
+    Node<T> *tail;
     int length;
-    Node *get_node(const int &index)
+    Node<T> *get_node(const T &index)
     {
         check_valid_index(index);
-        Node *current_node = this->head;
+        Node<T> *current_node = this->head;
         if (index == 0)
         {
             return current_node;
@@ -35,7 +37,7 @@ public:
         this->tail = nullptr;
         this->length = 0;
     }
-    bool check_valid_index(const int &index)
+    bool check_valid_index(const T &index)
     {
         if (index < 0 || index > this->length - 1)
         {
@@ -43,9 +45,9 @@ public:
         }
         return true;
     }
-    void push_back(const int &value)
+    void push_back(const T &value)
     {
-        Node *new_node = new Node(value);
+        Node<T> *new_node = new Node(value);
         if (this->head == nullptr)
         {
             this->head = new_node;
@@ -65,7 +67,7 @@ public:
     }
     void display(void)
     {
-        Node *current_node = this->head;
+        Node<T> *current_node = this->head;
         if (current_node == nullptr)
         {
             std::cout << "List is Empty";
@@ -82,7 +84,7 @@ public:
         } while (current_node != this->head);
         std::cout << std::endl;
     }
-    void insert(const int &value, const int &index)
+    void insert(const T &value, const int &index)
     {
 
         if (index == this->length || this->head == nullptr)
@@ -90,11 +92,11 @@ public:
             push_back(value);
             return;
         }
-        Node *new_node = new Node(value);
+        Node<T> *new_node = new Node(value);
         if (index == 0)
         {
-            Node *head = this->head;
-            Node *tail = this->tail;
+            Node<T> *head = this->head;
+            Node<T> *tail = this->tail;
             new_node->next = head;
             new_node->prev = tail;
             head->prev = new_node;
@@ -103,15 +105,15 @@ public:
             this->length++;
             return;
         }
-        Node *node_in_index = get_node(index);
-        Node *prev_node = node_in_index->prev;
+        Node<T> *node_in_index = get_node(index);
+        Node<T> *prev_node = node_in_index->prev;
         node_in_index->prev = new_node;
         prev_node->next = new_node;
         new_node->next = node_in_index;
         new_node->prev = prev_node;
         this->length++;
     }
-    int getNodeIndex(const int &value)
+    int getNodeIndex(const T &value)
     {
         int count = 0;
         if (this->head == nullptr)
@@ -121,7 +123,7 @@ public:
         if (this->head->value == value)
             return count;
         bool found = false;
-        Node *cur = this->head->next;
+        Node<T> *cur = this->head->next;
         while (true)
         {
             count++;
@@ -140,12 +142,12 @@ public:
             return -1;
         return count;
     }
-    bool contains(const int &value)
+    bool contains(const T &value)
     {
         bool found = false;
         if (this->head == nullptr)
             return found;
-        Node *cur = this->head;
+        Node<T> *cur = this->head;
         while (true)
         {
             if (cur->value == value)
@@ -161,12 +163,12 @@ public:
         }
         return found;
     }
-    void delete_by_index(const int &index)
+    void delete_by_index(const T &index)
     {
         check_valid_index(index);
         if (index == 0)
         {
-            Node *next_node = this->head->next;
+            Node<T> *next_node = this->head->next;
             next_node->prev = this->tail;
             this->tail->next = next_node;
             delete (this->head);
@@ -176,7 +178,7 @@ public:
         }
         if (index == this->length - 1)
         {
-            Node *prev_node = this->tail->prev;
+            Node<T> *prev_node = this->tail->prev;
             prev_node->next = this->head;
             this->head->prev = prev_node;
             delete (this->tail);
@@ -184,9 +186,9 @@ public:
             this->length--;
             return;
         }
-        Node *node_in_index = get_node(index);
-        Node *next_node = get_node(index + 1);
-        Node *prev_node = get_node(index - 1);
+        Node<T> *node_in_index = get_node(index);
+        Node<T> *next_node = get_node(index + 1);
+        Node<T> *prev_node = get_node(index - 1);
         delete (node_in_index);
         next_node->prev = prev_node;
         prev_node->next = next_node;
@@ -200,7 +202,7 @@ public:
 
 int main(void)
 {
-    LinkedLists dop;
+    LinkedLists<int> dop;
     dop.push_back(34);
     dop.push_back(45);
     dop.push_back(98);
