@@ -15,7 +15,7 @@ private:
     Node<T> *head;
     Node<T> *tail;
     int length;
-    Node<T> *get_node(const T &index)
+    Node<T> *get_node(const size_t index)
     {
         check_valid_index(index);
         Node<T> *current_node = this->head;
@@ -37,7 +37,7 @@ public:
         this->tail = nullptr;
         this->length = 0;
     }
-    bool check_valid_index(const T &index)
+    bool check_valid_index(const size_t &index)
     {
         if (index < 0 || index > this->length - 1)
         {
@@ -84,7 +84,7 @@ public:
         } while (current_node != this->head);
         std::cout << std::endl;
     }
-    void insert(const T &value, const int &index)
+    void insert(const T &value, const size_t &index)
     {
 
         if (index == this->length || this->head == nullptr)
@@ -163,7 +163,7 @@ public:
         }
         return found;
     }
-    void delete_by_index(const T &index)
+    void delete_by_index(const size_t &index)
     {
         check_valid_index(index);
         if (index == 0)
